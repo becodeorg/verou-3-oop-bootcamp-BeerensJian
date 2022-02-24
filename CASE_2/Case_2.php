@@ -61,5 +61,21 @@ $bananas -> setDiscount(0.50);
 $apples -> setDiscount(0.50);
 echo "<br>" . $bananas -> price . "<br>" . $apples -> price;
 
+// Case 2 Other Way
+$apples -> price = 1.5;
+$bananas -> price = 1;
+$basket = [$bananas, $apples, $wineBottles];
+function setDiscountOnFruits($basket, float $discount)
+{
+    foreach ($basket as $item)
+    {
+        if ($item -> type == "fruit") {
+            $item -> price = $item -> price * $discount;
+        }
+    }
+    return "<br> The price of fruits Are now " . ($discount * 100) . "% Off";
+}
 
+echo setDiscountOnFruits($basket,0.50);
+echo "<br>" . $bananas -> price . "<br>" . $apples -> price;
 
