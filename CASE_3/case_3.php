@@ -14,7 +14,7 @@ function pre_r($array)
     echo '</pre>';
 }
 
-$student1 = new Student("Basile", 1);
+$student1 = new Student("Basile", 2);
 $student2 = new Student("Basilicum", 10);
 $student3 = new Student("Basila", 3);
 $student4 = new Student("Basilo", 9);
@@ -29,6 +29,31 @@ $student10 = new Student("Bert The Second", 8);
 $studentGroup1 = [$student1, $student2, $student3, $student4, $student5];
 $studentGroup2 = [$student6, $student7, $student8, $student9, $student10];
 
+
+
+function removeStudentFromGroup(array $arr, $student)
+{
+    foreach($arr as $key => $value) {
+        if ($arr[$key] -> name == $student) {
+            $removedStudent = $value;
+            unset($arr[$key]);
+            break;
+        }
+    }
+
+    return ["student" => $removedStudent, "array" => $arr];
+}
+
+
+function switchGroups(array $fromArr, array &$toArr, $student)
+{
+    $returnedArray = removeStudentFromGroup($fromArr, $student);
+    $toArr[] = $returnedArray["student"];
+
+    return $returnedArray["array"];
+}
+
+
 function getAverageOfGroup($group)
 {
     $numberOfStudents = count($group);
@@ -41,3 +66,8 @@ function getAverageOfGroup($group)
 }
 
 echo getAverageOfGroup($studentGroup1);
+
+$studentGroup1 = switchGroups($studentGroup1,$studentGroup2,"Basile");
+
+pre_r($studentGroup1);
+pre_r($studentGroup2);
