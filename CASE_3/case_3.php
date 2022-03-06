@@ -34,7 +34,7 @@ $studentGroup2 = [$student6, $student7, $student8, $student9, $student10];
 function removeStudentFromGroup(array $arr, $student)
 {
     foreach($arr as $key => $value) {
-        if ($arr[$key] -> name == $student) {
+        if ($value-> name == $student) {
             $removedStudent = $value;
             unset($arr[$key]);
             break;
@@ -62,7 +62,13 @@ function getAverageOfGroup($group)
         $groupAverage += $student -> grade;
     }
 
-    return $groupAverage / $numberOfStudents;
+    return "<br>" . $groupAverage / $numberOfStudents;
+}
+
+// Step 3 :
+
+function ExchangeStudents($group1, $group2) {
+
 }
 
 echo getAverageOfGroup($studentGroup1);
@@ -71,3 +77,7 @@ $studentGroup1 = switchGroups($studentGroup1,$studentGroup2,"Basile");
 
 pre_r($studentGroup1);
 pre_r($studentGroup2);
+
+echo getAverageOfGroup($studentGroup1);
+echo getAverageOfGroup($studentGroup2);
+
